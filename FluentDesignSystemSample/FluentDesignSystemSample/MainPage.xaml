@@ -6,39 +6,41 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:RS3="using:Windows.UI.Xaml.Controls?IsApiContractPresent(Windows.Foundation.UniversalApiContract,5)"
+    xmlns:appmodel="using:Windows.ApplicationModel"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <RS3:NavigationView IsSettingsVisible="True" x:Name="navview" AlwaysShowHeader="False" ItemInvoked="Navview_ItemInvoked">
+        <RS3:NavigationView IsSettingsVisible="True" x:Name="NavigationView" AlwaysShowHeader="False" ItemInvoked="NavigationView_ItemInvoked" x:FieldModifier="Public">
             <RS3:NavigationView.MenuItems>
-                <RS3:NavigationViewItem Content="material" IsSelected="True"  >
+                <RS3:NavigationViewItem Content="Material" IsSelected="True"  >
                     <RS3:NavigationViewItem.Icon>
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF126;"/>
                     </RS3:NavigationViewItem.Icon>
                 </RS3:NavigationViewItem>
-                <RS3:NavigationViewItem Content="Now playing" >
+                <RS3:NavigationViewItem Content="Light" >
                     <RS3:NavigationViewItem.Icon>
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF126;"/>
                     </RS3:NavigationViewItem.Icon>
                 </RS3:NavigationViewItem>
-                <RS3:NavigationViewItem Content="Favorites" >
+                <RS3:NavigationViewItem Content="Motion" >
                     <RS3:NavigationViewItem.Icon>
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF126;"/>
                     </RS3:NavigationViewItem.Icon>
                 </RS3:NavigationViewItem>
-                <RS3:NavigationViewItem Content="Notes" >
+                <RS3:NavigationViewItem Content="Depth" >
                     <RS3:NavigationViewItem.Icon>
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF126;"/>
                     </RS3:NavigationViewItem.Icon>
                 </RS3:NavigationViewItem>
-                <RS3:NavigationViewItem Content="Downloads" >
+                <RS3:NavigationViewItem Content="Scale" >
                     <RS3:NavigationViewItem.Icon>
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF126;"/>
                     </RS3:NavigationViewItem.Icon>
                 </RS3:NavigationViewItem>
             </RS3:NavigationView.MenuItems>
-            <Frame x:Name="appNavFrame" Navigated="AppNavFrame_Navigated">
+            <Frame x:Name="RootFrame" Navigated="RootFrame_Navigated">
             </Frame>
         </RS3:NavigationView>
+        <TextBlock x:Name="WindowTitle" Style="{ThemeResource CaptionTextBlockStyle}" Visibility="{x:Bind TitleHelper.TitleVisibility, Mode=OneWay}" Margin="{x:Bind TitleHelper.TitlePosition, Mode=OneWay}" VerticalAlignment="Top" Text="{x:Bind appmodel:Package.Current.DisplayName}"/>
     </Grid>
 </Page>
