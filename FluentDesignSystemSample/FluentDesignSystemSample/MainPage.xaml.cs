@@ -52,6 +52,7 @@ namespace FluentDesignSystemSample
 
         private void NavigationView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
+            
             if (args.IsSettingsInvoked)
             {
                 RootFrame.Navigate(typeof(SettingsPage));
@@ -96,6 +97,10 @@ namespace FluentDesignSystemSample
                     break;
                 case Type c when e.SourcePageType == typeof(ScalePage):
                     ((NavigationViewItem)NavigationView.MenuItems[4]).IsSelected = true;
+                    break;
+                case Type c when e.SourcePageType == typeof(SettingsPage):
+                    NavigationView.SelectedItem = NavigationView.SettingsItem;
+                    //((NavigationViewItem)NavigationView.SettingsItem).IsSelected = true;
                     break;
             }
             DispatcherHelper.ExecuteOnUIThreadAsync(() =>
