@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -26,5 +27,23 @@ namespace FluentDesignSystemSample.Views
         {
             this.InitializeComponent();
         }
+
+        private void OnSettingsPageLoaded(object sender, RoutedEventArgs e)
+        {
+            var currentTheme = App.RootTheme.ToString();
+            (ThemePanel.Children.Cast<RadioButton>().FirstOrDefault(c => c?.Tag?.ToString() == currentTheme)).IsChecked = true;
+        }
+
+        private void OnThemeRadioButtonChecked(object sender, RoutedEventArgs e)
+        {
+            var selectedTheme = ((RadioButton)sender)?.Tag?.ToString();
+
+            if (selectedTheme != null)
+            {
+                App.RootTheme = Enum.Parse<ElementTheme>(selectedTheme);
+            }
+        }
+
+       
     }
 }

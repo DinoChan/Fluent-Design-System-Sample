@@ -9,6 +9,7 @@ using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Foundation.Metadata;
+using Windows.Storage;
 using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
@@ -27,6 +28,34 @@ namespace FluentDesignSystemSample
     /// </summary>
     sealed partial class App : Application
     {
+        private const string SelectedAppThemeKey = "SelectedAppTheme";
+
+        /// <summary>
+        /// Gets or sets (with LocalSettings persistence) the RequestedTheme of the root element.
+        /// </summary>
+        public static ElementTheme RootTheme
+        {
+            get
+            {
+                if (Window.Current.Content is FrameworkElement rootElement)
+                {
+                    return rootElement.RequestedTheme;
+                }
+
+                return ElementTheme.Default;
+            }
+            set
+            {
+                if (Window.Current.Content is FrameworkElement rootElement)
+                {
+                    rootElement.RequestedTheme = value;
+                }
+
+                ApplicationData.Current.LocalSettings.Values[SelectedAppThemeKey] = value.ToString();
+            }
+        }
+
+
         /// <summary>
         /// 初始化单一实例应用程序对象。这是执行的创作代码的第一行，
         /// 已执行，逻辑上等同于 main() 或 WinMain()。

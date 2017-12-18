@@ -15,9 +15,26 @@
         </Grid.RowDefinitions>
         <TextBlock
                 Grid.Row="0"
-                x:Uid="Settings_Title"
+                Text="Settings"
                 x:Name="TitlePage"
                 FontWeight="Light"
                 Style="{StaticResource PageTitleStyle}" />
+        <StackPanel Grid.Row="1">
+            <StackPanel Margin="{StaticResource SettingsSubheaderMargin}">
+                <TextBlock
+                    Text="Personalization"
+                    Style="{StaticResource SubtitleTextBlockStyle}" />
+
+                <TextBlock
+                    Text="Theme Mode" 
+                    Style="{StaticResource BodyTextStyle}" />
+
+                <StackPanel x:Name="ThemePanel"  Margin="{StaticResource EightTopMargin}">
+                    <RadioButton Tag="Light" Checked="OnThemeRadioButtonChecked" Content="Light"  />
+                    <RadioButton Tag="Dark" Checked="OnThemeRadioButtonChecked" Content="Dark" />
+                    <RadioButton Tag="Default" Checked="OnThemeRadioButtonChecked" Content="Use system setting" />
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Page>
