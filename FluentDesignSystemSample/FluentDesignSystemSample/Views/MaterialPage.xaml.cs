@@ -25,6 +25,7 @@ namespace FluentDesignSystemSample.Views
         public MaterialPage()
         {
             this.InitializeComponent();
+            CollectionViewSource
         }
     }
 }
