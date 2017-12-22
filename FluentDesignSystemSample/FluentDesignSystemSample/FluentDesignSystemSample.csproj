@@ -99,6 +99,12 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\AcrylicModel.cs" />
+    <Compile Include="NavigationRoot.xaml.cs">
+      <DependentUpon>NavigationRoot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NavigationRootBeforeFcu.xaml.cs">
+      <DependentUpon>NavigationRootBeforeFcu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TitleBarHelper.cs" />
     <Compile Include="Views\DepthPage.xaml.cs">
@@ -146,6 +152,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="NavigationRoot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NavigationRootBeforeFcu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\DepthPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -176,6 +190,9 @@
       <Version>6.0.5</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI">
+      <Version>2.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
       <Version>2.1.1</Version>
     </PackageReference>
   </ItemGroup>
