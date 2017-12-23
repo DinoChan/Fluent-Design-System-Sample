@@ -17,7 +17,7 @@
             </ResourceDictionary.ThemeDictionaries>
             <AcrylicBrush x:Key="CustomAcrylicBackgroundBrush" BackgroundSource="HostBackdrop" TintOpacity="0.8" TintColor="Black" FallbackColor="Green"/>
             <DataTemplate x:Key="BackgroundDataTemplete">
-                <Grid>
+                <Grid Width="320" Height="200">
                     <Rectangle Fill="Aqua"
                            Height="200"
                            Width="100"
@@ -37,34 +37,35 @@
             </DataTemplate>
 
             <DataTemplate x:Key="AcrylicModelTemplate" x:DataType="models:AcrylicModel">
-                <Grid>
+                <Grid Margin="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <StackPanel>
-                        <TextBlock Text="{Binding Name}" />
-                        <TextBlock>
-                        <Run Text="TintColor:" />
-                        <Run Text="{Binding Brush.TintColor}" />
-                        </TextBlock>
-                        <TextBlock>
-                        <Run Text="TintOpacity:" />
-                        <Run Text="{Binding Brush.TintOpacity}" />
-                        </TextBlock>
-                        <TextBlock>
-                        <Run Text="BackgroundSource:" />
-                        <Run Text="{Binding Brush.BackgroundSource}" />
-                        </TextBlock>
-                        <TextBlock>
-                        <Run Text="FallbackColor:" />
-                        <Run Text="{Binding  Brush.FallbackColor}" />
-                        </TextBlock>
-                    </StackPanel>
-                    <Grid Grid.Column="1">
+                    <Grid >
                         <ContentControl ContentTemplate="{StaticResource BackgroundDataTemplete}" Content="{Binding}"/>
                         <Rectangle  Margin="12" Fill="{Binding Brush}"/>
                     </Grid>
+                    <StackPanel Grid.Column="1" Margin="20,0,0,0">
+                        <TextBlock Text="{Binding Name}" FontWeight="Bold" />
+                        <TextBlock Margin="0,5">
+                        <Run Text="TintColor:" />
+                        <Run Text="{Binding Brush.TintColor}" FontStyle="Italic" />
+                        </TextBlock>
+                        <TextBlock Margin="0,5">
+                        <Run Text="TintOpacity:" />
+                        <Run Text="{Binding Brush.TintOpacity}" FontStyle="Italic"/>
+                        </TextBlock>
+                        <TextBlock Margin="0,5">
+                        <Run Text="BackgroundSource:" />
+                        <Run Text="{Binding Brush.BackgroundSource}" FontStyle="Italic"/>
+                        </TextBlock>
+                        <TextBlock Margin="0,5">
+                        <Run Text="FallbackColor:" />
+                        <Run Text="{Binding  Brush.FallbackColor}" FontStyle="Italic"/>
+                        </TextBlock>
+                    </StackPanel>
+                  
                 </Grid>
             </DataTemplate>
         </ResourceDictionary>
@@ -73,7 +74,7 @@
           Margin="{StaticResource PageMargin}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0"
@@ -82,9 +83,9 @@
                    FontWeight="Light"
                    Style="{StaticResource PageTitleStyle}" />
         <Pivot Grid.Row="1"
-               Margin="{StaticResource SettingsSubheaderMargin}">
+            >
             <PivotItem Header="Background Acrylic">
-                <ScrollViewer>
+                <ScrollViewer >
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -94,7 +95,7 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <ListView ItemTemplate="{StaticResource AcrylicModelTemplate}" Header="Tint opacity:80%" >
+                        <ListView ItemTemplate="{StaticResource  AcrylicModelTemplate}" Header="Tint opacity:80%">
                             <models:AcrylicModel Name="SystemControlAcrylicWindowBrush" Brush="{ThemeResource SystemControlAcrylicWindowBrush}"/>
                             <models:AcrylicModel Name="SystemControlChromeLowAcrylicWindowBrush" Brush="{ThemeResource SystemControlChromeLowAcrylicWindowBrush}"/>
                             <models:AcrylicModel Name="SystemControlBaseHighAcrylicWindowBrush" Brush="{ThemeResource SystemControlBaseHighAcrylicWindowBrush}"/>
@@ -102,30 +103,35 @@
                             <models:AcrylicModel Name="SystemControlAltHighAcrylicWindowBrush" Brush="{ThemeResource SystemControlAltHighAcrylicWindowBrush}"/>
                             <models:AcrylicModel Name="SystemControlAltLowAcrylicWindowBrush" Brush="{ThemeResource SystemControlAltLowAcrylicWindowBrush}"/>
                             <ListView.Footer>
-                                <TextBlock Text="Recommended usage: These are general-purpose acrylic resources that work well in a wide variety of usages. If your app uses secondary text of AltMedium color with text size smaller than 18px, place an 80% acrylic resource behind the text to meet contrast ratio requirements. " TextWrapping="Wrap"/>
+                                <TextBlock FontStyle="Italic"
+                                           Text="Recommended usage: These are general-purpose acrylic resources that work well in a wide variety of usages. If your app uses secondary text of AltMedium color with text size smaller than 18px, place an 80% acrylic resource behind the text to meet contrast ratio requirements. " TextWrapping="Wrap"/>
                             </ListView.Footer>
                         </ListView>
 
-                        <ListView ItemTemplate="{StaticResource AcrylicModelTemplate}" Header="Tint opacity:70%" Grid.Row="1">
+                        <ListView ItemTemplate="{StaticResource  AcrylicModelTemplate}" Header="Tint opacity:70%" Grid.Row="1" Margin="0,20,0,0">
                             <models:AcrylicModel Name="SystemControlAcrylicWindowMediumHighBrush" Brush="{ThemeResource SystemControlAcrylicWindowMediumHighBrush}"/>
                             <models:AcrylicModel Name="SystemControlBaseHighAcrylicWindowMediumHighBrush" Brush="{ThemeResource SystemControlBaseHighAcrylicWindowMediumHighBrush}"/>
                             <ListView.Footer>
-                                <TextBlock Text="Recommended usage: If your app uses secondary text of AltMedium color with a text size of 18px or larger, you can place these more transparent 70% acrylic resources behind the text. We recommend using these resources in your app's top horizontal navigation and commanding areas. " TextWrapping="Wrap"/>
+                                <TextBlock FontStyle="Italic"
+                                           Text="Recommended usage: If your app uses secondary text of AltMedium color with a text size of 18px or larger, you can place these more transparent 70% acrylic resources behind the text. We recommend using these resources in your app's top horizontal navigation and commanding areas. " TextWrapping="Wrap"/>
                             </ListView.Footer>
                         </ListView>
 
-                        <ListView ItemTemplate="{StaticResource AcrylicModelTemplate}" Header="Tint opacity:60%" Grid.Row="2" >
-                            <models:AcrylicModel Name="SystemControlChromeHighAcrylicWindowMediumBrush" Brush="{ThemeResource SystemControlChromeHighAcrylicWindowMediumBrush}"/>
-                            <models:AcrylicModel Name="SystemControlChromeMediumAcrylicWindowMediumBrush" Brush="{ThemeResource SystemControlChromeMediumAcrylicWindowMediumBrush}"/>
-                            <models:AcrylicModel Name="SystemControlChromeMediumLowAcrylicWindowMediumBrush" Brush="{ThemeResource SystemControlChromeMediumLowAcrylicWindowMediumBrush}"/>
-                            <models:AcrylicModel Name="SystemControlBaseHighAcrylicWindowMediumBrush" Brush="{ThemeResource SystemControlBaseHighAcrylicWindowMediumBrush}"/>
-                            <models:AcrylicModel Name="SystemControlBaseMediumLowAcrylicWindowMediumBrush" Brush="{ThemeResource SystemControlBaseMediumLowAcrylicWindowMediumBrush}"/>
-                            <models:AcrylicModel Name="SystemControlAltMediumLowAcrylicWindowMediumBrush" Brush="{ThemeResource SystemControlAltMediumLowAcrylicWindowMediumBrush}"/>
+                        <ListView ItemTemplate="{StaticResource AcrylicModelTemplate}" Header="Tint opacity:60%" Grid.Row="2" Margin="0,20,0,0">
+                            <ListView.Items>
+                                <models:AcrylicModel Name="SystemControlChromeHighAcrylicWindowMediumBrush" Brush="{ThemeResource  SystemControlChromeHighAcrylicWindowMediumBrush}"/>
+                                <models:AcrylicModel Name="SystemControlChromeMediumAcrylicWindowMediumBrush" Brush="{ThemeResource SystemControlChromeMediumAcrylicWindowMediumBrush}"/>
+                                <models:AcrylicModel Name="SystemControlChromeMediumLowAcrylicWindowMediumBrush" Brush="{ThemeResource SystemControlChromeMediumLowAcrylicWindowMediumBrush}"/>
+                                <models:AcrylicModel Name="SystemControlBaseHighAcrylicWindowMediumBrush" Brush="{ThemeResource SystemControlBaseHighAcrylicWindowMediumBrush}"/>
+                                <models:AcrylicModel Name="SystemControlBaseMediumLowAcrylicWindowMediumBrush" Brush="{ThemeResource SystemControlBaseMediumLowAcrylicWindowMediumBrush}"/>
+                                <models:AcrylicModel Name="SystemControlAltMediumLowAcrylicWindowMediumBrush" Brush="{ThemeResource SystemControlAltMediumLowAcrylicWindowMediumBrush}"/>
+                            </ListView.Items>
                             <ListView.Footer>
-                                <TextBlock Text="Recommended usage: When placing only primary text of AltHigh color over acrylic, your app can utilize these 60% resources. We recommend painting your app's vertical navigation pane, i.e. hamburger menu, with 60% acrylic. " TextWrapping="Wrap"/>
+                                <TextBlock FontStyle="Italic"
+                                           Text="Recommended usage: When placing only primary text of AltHigh color over acrylic, your app can utilize these 60% resources. We recommend painting your app's vertical navigation pane, i.e. hamburger menu, with 60% acrylic. " TextWrapping="Wrap"/>
                             </ListView.Footer>
                         </ListView>
-                        <ListView ItemTemplate="{StaticResource AcrylicModelTemplate}" Header="user-specified accent color" Grid.Row="3" >
+                        <ListView ItemTemplate="{StaticResource AcrylicModelTemplate}" Header="user-specified accent color" Grid.Row="3" Margin="0,20,0,0">
                             <models:AcrylicModel Name="SystemControlAccentAcrylicWindowAccentMediumHighBrush" Brush="{ThemeResource SystemControlAccentAcrylicWindowAccentMediumHighBrush}"/>
                             <models:AcrylicModel Name="SystemControlAccentDark1AcrylicWindowAccentDark1Brush" Brush="{ThemeResource SystemControlAccentDark1AcrylicWindowAccentDark1Brush}"/>
                             <models:AcrylicModel Name="SystemControlAccentDark2AcrylicWindowAccentDark2MediumHighBrush" Brush="{ThemeResource SystemControlAccentDark2AcrylicWindowAccentDark2MediumHighBrush}"/>
@@ -185,7 +191,7 @@
                 </ScrollViewer>
 
             </PivotItem>
-            <PivotItem Header="Custom Acrylic">
+            <!--<PivotItem Header="Custom Acrylic">
                 <ScrollViewer>
                     <StackPanel>
                         <Grid >
@@ -205,7 +211,7 @@
                                         <Rectangle Width="30" Fill="{StaticResource }"/>
                                     </StackPanel>
                                 </Button>
-                                
+
                                 <ColorPicker Color="{Binding Source={StaticResource CustomAcrylicBackgroundBrush},Path=TintOpacity,Mode=TwoWay}"/>
                                 <ComboBox x:Name="ColorSelectorInApp" SelectionChanged="ColorSelector_SelectionChanged" ItemTemplate="{StaticResource ColorTemplate}">
                                     <SolidColorBrush Color="Black"/>
@@ -225,29 +231,8 @@
                         </Grid>
                     </StackPanel>
                 </ScrollViewer>
-            </PivotItem>
+            </PivotItem>-->
         </Pivot>
-        <StackPanel Grid.Row="1">
-            <StackPanel Margin="{StaticResource SettingsSubheaderMargin}">
-                <TextBlock Text="Personalization"
-                           Style="{StaticResource SubtitleTextBlockStyle}" />
-
-                <TextBlock Text="Theme Mode"
-                           Style="{StaticResource BodyTextStyle}" />
-
-                <StackPanel x:Name="ThemePanel"
-                            Margin="{StaticResource EightTopMargin}">
-                    <RadioButton Tag="Light"
-                                 Checked="OnThemeRadioButtonChecked"
-                                 Content="Light" />
-                    <RadioButton Tag="Dark"
-                                 Checked="OnThemeRadioButtonChecked"
-                                 Content="Dark" />
-                    <RadioButton Tag="Default"
-                                 Checked="OnThemeRadioButtonChecked"
-                                 Content="Use system setting" />
-                </StackPanel>
-            </StackPanel>
-        </StackPanel>
+        
     </Grid>
 </Page>

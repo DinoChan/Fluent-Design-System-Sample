@@ -10,37 +10,37 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <RS3:NavigationView IsSettingsVisible="True" x:Name="NavigationView" AlwaysShowHeader="False" ItemInvoked="NavigationView_ItemInvoked" x:FieldModifier="Public">
-            <RS3:NavigationView.MenuItems>
-                <RS3:NavigationViewItem Content="Material" IsSelected="True"  >
-                    <RS3:NavigationViewItem.Icon>
+        <NavigationView IsSettingsVisible="True" x:Name="NavigationView" AlwaysShowHeader="False" ItemInvoked="NavigationView_ItemInvoked" x:FieldModifier="Public">
+            <NavigationView.MenuItems>
+                <NavigationViewItem Content="Material" IsSelected="True"  >
+                    <NavigationViewItem.Icon>
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF126;"/>
-                    </RS3:NavigationViewItem.Icon>
-                </RS3:NavigationViewItem>
-                <RS3:NavigationViewItem Content="Light" >
-                    <RS3:NavigationViewItem.Icon>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem Content="Light" >
+                    <NavigationViewItem.Icon>
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF126;"/>
-                    </RS3:NavigationViewItem.Icon>
-                </RS3:NavigationViewItem>
-                <RS3:NavigationViewItem Content="Motion" >
-                    <RS3:NavigationViewItem.Icon>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem Content="Motion" >
+                    <NavigationViewItem.Icon>
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF126;"/>
-                    </RS3:NavigationViewItem.Icon>
-                </RS3:NavigationViewItem>
-                <RS3:NavigationViewItem Content="Depth" >
-                    <RS3:NavigationViewItem.Icon>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem Content="Depth" >
+                    <NavigationViewItem.Icon>
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF126;"/>
-                    </RS3:NavigationViewItem.Icon>
-                </RS3:NavigationViewItem>
-                <RS3:NavigationViewItem Content="Scale" >
-                    <RS3:NavigationViewItem.Icon>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem Content="Scale" >
+                    <NavigationViewItem.Icon>
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF126;"/>
-                    </RS3:NavigationViewItem.Icon>
-                </RS3:NavigationViewItem>
-            </RS3:NavigationView.MenuItems>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+            </NavigationView.MenuItems>
             <Frame x:Name="RootFrame" Navigated="RootFrame_Navigated">
             </Frame>
-        </RS3:NavigationView>
+        </NavigationView>
         <TextBlock x:Name="WindowTitle" Style="{ThemeResource CaptionTextBlockStyle}" Visibility="{x:Bind TitleHelper.TitleVisibility, Mode=OneWay}" Margin="{x:Bind TitleHelper.TitlePosition, Mode=OneWay}" VerticalAlignment="Top" Text="{x:Bind appmodel:Package.Current.DisplayName}"/>
     </Grid>
 </Page>
