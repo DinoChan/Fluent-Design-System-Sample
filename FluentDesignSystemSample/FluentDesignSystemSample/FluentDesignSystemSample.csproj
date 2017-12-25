@@ -104,6 +104,15 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TitleBarHelper.cs" />
+    <Compile Include="Views\ConnectedAnimations\ConnectedAnimations1stPage.xaml.cs">
+      <DependentUpon>ConnectedAnimations1stPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConnectedAnimations\ConnectedAnimations2ndPage.xaml.cs">
+      <DependentUpon>ConnectedAnimations2ndPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConnectedAnimations\ConnectedAnimations3rdPage.xaml.cs">
+      <DependentUpon>ConnectedAnimations3rdPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DepthPage.xaml.cs">
       <DependentUpon>DepthPage.xaml</DependentUpon>
     </Compile>
@@ -131,6 +140,7 @@
     <None Include="FluentDesignSystemSample_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\cliff.jpg" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -163,6 +173,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="NavigationRoot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ConnectedAnimations\ConnectedAnimations1stPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ConnectedAnimations\ConnectedAnimations2ndPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ConnectedAnimations\ConnectedAnimations3rdPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

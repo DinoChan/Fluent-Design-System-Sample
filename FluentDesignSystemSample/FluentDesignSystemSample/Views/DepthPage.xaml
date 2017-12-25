@@ -8,6 +8,59 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0"
+                   Text="Depth"
+                   x:Name="TitlePage"
+                   FontWeight="Bold"
+                   Style="{StaticResource PageTitleStyle}" />
+        <Pivot Grid.Row="1">
+            <PivotItem Header="Parallax">
+                <Grid>
+                    <ParallaxView x:Name="parallaxView" Source="{Binding ElementName=listView}"
+                                  VerticalAlignment="Top" HorizontalAlignment="Left" VerticalShift="500">
+                        <Image Source="ms-appx:///Assets/cliff.jpg" />
+                    </ParallaxView>
+                    <ListView x:Name="listView" 
+                              HorizontalAlignment="Stretch" VerticalAlignment="Top"
+                              Background="#80000000" >
+                        <x:String>Item 1</x:String>
+                        <x:String>Item 2</x:String>
+                        <x:String>Item 3</x:String>
+                        <x:String>Item 4</x:String>
+                        <x:String>Item 5</x:String>
+                        <x:String>Item 6</x:String>
+                        <x:String>Item 7</x:String>
+                        <x:String>Item 8</x:String>
+                        <x:String>Item 9</x:String>
+                        <x:String>Item 10</x:String>
+                        <x:String>Item 11</x:String>
+                        <x:String>Item 13</x:String>
+                        <x:String>Item 14</x:String>
+                        <x:String>Item 15</x:String>
+                        <x:String>Item 16</x:String>
+                        <x:String>Item 17</x:String>
+                        <x:String>Item 18</x:String>
+                        <x:String>Item 19</x:String>
+                        <x:String>Item 20</x:String>
+                        <x:String>Item 21</x:String>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" Foreground="White" />
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.Header>
+                            <TextBlock Text="Scroll the list to see parallaxing of images" MaxWidth="280"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"
+                                       FontSize="28" TextWrapping="WrapWholeWords" />
+                        </ListView.Header>
+                    </ListView>
+                </Grid>
+            </PivotItem>
+        </Pivot>
     </Grid>
 </Page>

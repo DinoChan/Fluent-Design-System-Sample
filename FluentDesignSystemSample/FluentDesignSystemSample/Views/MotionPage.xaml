@@ -5,9 +5,24 @@
     xmlns:local="using:FluentDesignSystemSample.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ConnectedAnimations="using:FluentDesignSystemSample.Views.ConnectedAnimations"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0"
+                   Text="Motion"
+                   x:Name="TitlePage"
+                   FontWeight="Bold"
+                   Style="{StaticResource PageTitleStyle}" />
+        <Pivot Grid.Row="1">
+            <PivotItem Header="Connected Animations">
+                <ConnectedAnimations:ConnectedAnimations1stPage/>
+            </PivotItem>
+        </Pivot>
     </Grid>
 </Page>
