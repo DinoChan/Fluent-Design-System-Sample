@@ -18,14 +18,14 @@
                    FontWeight="Light"
                    Style="{StaticResource PageTitleStyle}" />
         <StackPanel Grid.Row="1">
-            <StackPanel Margin="{StaticResource SettingsSubheaderMargin}">
+            <StackPanel Margin="12,0,0,0">
                 <TextBlock Text="Reveal Button"
                            Style="{StaticResource SubtitleTextBlockStyle}" />
             </StackPanel>
             <Button Style="{StaticResource ButtonRevealStyle}"
                     Content="Button"
                     Margin="20" />
-            <StackPanel Margin="{StaticResource SettingsSubheaderMargin}">
+            <StackPanel Margin="12,0,0,0">
                 <TextBlock Text="Custom Reveal Button"
                            Style="{StaticResource SubtitleTextBlockStyle}" />
             </StackPanel>
