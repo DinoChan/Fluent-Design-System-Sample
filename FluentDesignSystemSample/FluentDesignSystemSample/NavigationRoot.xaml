@@ -5,42 +5,67 @@
     xmlns:local="using:FluentDesignSystemSample"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
-
+    <UserControl.Resources>
+        <DataTemplate x:Key="HamburgerMenuItem">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="48" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <FontIcon Grid.Column="0" 
+                          FontSize="16"
+                          FontFamily="Segoe MDL2 Assets" 
+                          Glyph="{Binding Glyph}" 
+                          Foreground="Black" />
+                <TextBlock Grid.Column="1" 
+                           Text="{Binding Label}" 
+                           Foreground="Black" 
+                           FontSize="16" 
+                           VerticalAlignment="Center" />
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
     <Grid>
-        <NavigationView IsSettingsVisible="True" x:Name="NavigationView" AlwaysShowHeader="False" ItemInvoked="NavigationView_ItemInvoked" >
-            <NavigationView.MenuItems>
-                <NavigationViewItem Content="Material" IsSelected="True"  >
-                    <NavigationViewItem.Icon>
-                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF126;"/>
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
-                <NavigationViewItem Content="Light" >
-                    <NavigationViewItem.Icon>
-                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF126;"/>
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
-                <NavigationViewItem Content="Motion" >
-                    <NavigationViewItem.Icon>
-                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF126;"/>
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
-                <NavigationViewItem Content="Depth" >
-                    <NavigationViewItem.Icon>
-                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF126;"/>
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
-                <NavigationViewItem Content="Scale" >
-                    <NavigationViewItem.Icon>
-                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF126;"/>
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
-            </NavigationView.MenuItems>
-            <Frame x:Name="RootFrame" Navigated="RootFrame_Navigated">
-            </Frame>
-        </NavigationView>
+        <controls:HamburgerMenu x:Name="HamburgerMenu"
+                                PaneBackground="LightGray"
+                                PaneForeground="Black"
+                                SelectedIndex="0"
+                                ItemTemplate="{StaticResource HamburgerMenuItem}"
+                                OptionsItemTemplate="{StaticResource HamburgerMenuItem}"
+                                OpenPaneLength="240"
+                                DisplayMode="CompactInline"
+                                CompactPaneLength="48"
+                                HamburgerHeight="48"
+                                HamburgerVisibility="Visible"
+                                IsPaneOpen="False"
+                                UseNavigationViewWhenPossible="True">
+            <!--  Items  -->
+            <controls:HamburgerMenu.ItemsSource>
+                <controls:HamburgerMenuItemCollection>
+                    <controls:HamburgerMenuGlyphItem  Glyph="&#xF126;" Label="Material"/>
+                    <controls:HamburgerMenuGlyphItem  Glyph="&#xF126;" Label="Light"/>
+                    <controls:HamburgerMenuGlyphItem  Glyph="&#xF126;" Label="Motion"/>
+                    <controls:HamburgerMenuGlyphItem  Glyph="&#xF126;" Label="Depth"/>
+                    <controls:HamburgerMenuGlyphItem  Glyph="&#xF126;" Label="Scale"/>
+                </controls:HamburgerMenuItemCollection>
+            </controls:HamburgerMenu.ItemsSource>
 
+            <!--  Options  -->
+            <controls:HamburgerMenu.OptionsItemsSource>
+                <controls:HamburgerMenuItemCollection>
+                    <controls:HamburgerMenuGlyphItem Glyph="&#xE115;"
+                                                     Label="Settings" />
+                </controls:HamburgerMenuItemCollection>
+            </controls:HamburgerMenu.OptionsItemsSource>
+
+            <!--  Content  -->
+            <Grid x:Name="ContentGrid">
+                <Frame/>
+            </Grid>
+        </controls:HamburgerMenu>
     </Grid>
 </UserControl>
