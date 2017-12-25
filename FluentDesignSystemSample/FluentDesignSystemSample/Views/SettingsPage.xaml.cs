@@ -26,6 +26,7 @@ namespace FluentDesignSystemSample.Views
         public SettingsPage()
         {
             this.InitializeComponent();
+            Loaded += OnSettingsPageLoaded;
         }
 
         private void OnSettingsPageLoaded(object sender, RoutedEventArgs e)

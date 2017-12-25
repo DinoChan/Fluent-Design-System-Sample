@@ -1,46 +1,63 @@
-﻿<Page
-    x:Class="FluentDesignSystemSample.MainPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:FluentDesignSystemSample"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:RS3="using:Windows.UI.Xaml.Controls?IsApiContractPresent(Windows.Foundation.UniversalApiContract,5)"
-    xmlns:appmodel="using:Windows.ApplicationModel"
-    mc:Ignorable="d">
+﻿<Page x:Class="FluentDesignSystemSample.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:FluentDesignSystemSample"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:RS3="using:Windows.UI.Xaml.Controls?IsApiContractPresent(Windows.Foundation.UniversalApiContract,5)"
+      xmlns:appmodel="using:Windows.ApplicationModel"
+      mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <NavigationView IsSettingsVisible="True" x:Name="NavigationView" AlwaysShowHeader="False" ItemInvoked="NavigationView_ItemInvoked" x:FieldModifier="Public">
+        <NavigationView IsSettingsVisible="True"
+                        x:Name="NavigationView"
+                        AlwaysShowHeader="False"
+                        ItemInvoked="NavigationView_ItemInvoked"
+                        x:FieldModifier="Public">
             <NavigationView.MenuItems>
-                <NavigationViewItem Content="Material" IsSelected="True"  >
+                <NavigationViewItem Content="Material"
+                                    IsSelected="True">
                     <NavigationViewItem.Icon>
-                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF126;"/>
+                        <FontIcon FontFamily="Segoe MDL2 Assets"
+                                  Glyph="&#xF126;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem Content="Light" >
+                <NavigationViewItem Content="Light">
                     <NavigationViewItem.Icon>
-                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF126;"/>
+                        <FontIcon FontFamily="Segoe MDL2 Assets"
+                                  Glyph="&#xF126;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem Content="Motion" >
+                <NavigationViewItem Content="Motion">
                     <NavigationViewItem.Icon>
-                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF126;"/>
+                        <FontIcon FontFamily="Segoe MDL2 Assets"
+                                  Glyph="&#xF126;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem Content="Depth" >
+                <NavigationViewItem Content="Depth">
                     <NavigationViewItem.Icon>
-                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF126;"/>
+                        <FontIcon FontFamily="Segoe MDL2 Assets"
+                                  Glyph="&#xF126;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem Content="Scale" >
+                <NavigationViewItem Content="Scale">
                     <NavigationViewItem.Icon>
-                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF126;"/>
+                        <FontIcon FontFamily="Segoe MDL2 Assets"
+                                  Glyph="&#xF126;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
             </NavigationView.MenuItems>
-            <Frame x:Name="RootFrame" Navigated="RootFrame_Navigated">
+            <Frame x:Name="RootFrame"
+                   Navigated="RootFrame_Navigated"
+                   x:FieldModifier="Public">
             </Frame>
         </NavigationView>
-        <TextBlock x:Name="WindowTitle" Style="{ThemeResource CaptionTextBlockStyle}" Visibility="{x:Bind TitleHelper.TitleVisibility, Mode=OneWay}" Margin="{x:Bind TitleHelper.TitlePosition, Mode=OneWay}" VerticalAlignment="Top" Text="{x:Bind appmodel:Package.Current.DisplayName}"/>
+        <!--<local:NavigationRoot />-->
+        <TextBlock x:Name="WindowTitle"
+                   Style="{ThemeResource CaptionTextBlockStyle}"
+                   Visibility="{x:Bind TitleHelper.TitleVisibility, Mode=OneWay}"
+                   Margin="{x:Bind TitleHelper.TitlePosition, Mode=OneWay}"
+                   VerticalAlignment="Top"
+                   Text="{x:Bind appmodel:Package.Current.DisplayName}" />
     </Grid>
 </Page>

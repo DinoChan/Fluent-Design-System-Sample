@@ -29,7 +29,7 @@ namespace FluentDesignSystemSample.Views.ConnectedAnimations
 
         private void Border_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            Frame.Navigate(typeof(ConnectedAnimations2ndPage));
+          MainPage.Current.RootFrame.Navigate(typeof(ConnectedAnimations2ndPage));
         }
     }
 }

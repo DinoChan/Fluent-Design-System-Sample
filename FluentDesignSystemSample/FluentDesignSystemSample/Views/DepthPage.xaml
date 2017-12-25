@@ -20,9 +20,9 @@
                    Style="{StaticResource PageTitleStyle}" />
         <Pivot Grid.Row="1">
             <PivotItem Header="Parallax">
-                <Grid>
+                <Grid Height="500">
                     <ParallaxView x:Name="parallaxView" Source="{Binding ElementName=listView}"
-                                  VerticalAlignment="Top" HorizontalAlignment="Left" VerticalShift="500">
+                                  VerticalAlignment="Top" HorizontalAlignment="Left" VerticalShift="50">
                         <Image Source="ms-appx:///Assets/cliff.jpg" />
                     </ParallaxView>
                     <ListView x:Name="listView" 

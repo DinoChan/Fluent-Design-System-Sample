@@ -56,7 +56,7 @@ namespace FluentDesignSystemSample.Views.ConnectedAnimations
 
         private void ListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            Frame.Navigate(typeof(ConnectedAnimations3rdPage), e.ClickedItem);
+            MainPage.Current.RootFrame.Navigate(typeof(ConnectedAnimations3rdPage), e.ClickedItem);
         }
     }
 
