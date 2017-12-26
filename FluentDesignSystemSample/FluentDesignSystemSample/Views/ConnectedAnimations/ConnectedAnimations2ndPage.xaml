@@ -18,7 +18,7 @@
             <Border x:Name="HeroElement"
                     Height="300" 
                     Width="300"
-                    Background="Purple"
+                    Background="{ThemeResource SystemControlForegroundAccentBrush}"
                     animations:Connected.Key="item"></Border>
 
             <StackPanel x:Name="HeroDetailsElement" Margin="20,0" VerticalAlignment="Bottom" MaxWidth="500" animations:Connected.AnchorElement="{x:Bind HeroElement}">
@@ -38,7 +38,9 @@
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="local:Item">
                     <StackPanel>
-                        <Border x:Name="ItemThumbnail" Background="Purple" Height="200" Width="200"></Border>
+                        <Border x:Name="ItemThumbnail"
+                                Background="{ThemeResource SystemControlForegroundAccentBrush}"
+                                Height="200" Width="200"></Border>
                         <TextBlock Text="{x:Bind Title}"></TextBlock>
                     </StackPanel>
                 </DataTemplate>

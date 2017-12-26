@@ -16,10 +16,10 @@
         <TextBlock
                 Grid.Row="0"
                 Text="Settings"
-                x:Name="TitlePage"
+                x:Name="TitleElement"
                 FontWeight="Light"
                 Style="{StaticResource PageTitleStyle}" />
-        <StackPanel Grid.Row="1">
+        <StackPanel Grid.Row="1" x:Name="ContentElement">
             <StackPanel Margin="{StaticResource SettingsSubheaderMargin}">
                 <TextBlock
                     Text="Personalization"

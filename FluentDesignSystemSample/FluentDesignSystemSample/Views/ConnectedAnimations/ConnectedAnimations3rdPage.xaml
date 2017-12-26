@@ -20,8 +20,8 @@
                     <TextBlock TextWrapping="WrapWholeWords">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eleifend ex sit amet blandit lobortis. Curabitur ut diam fringilla, interdum massa sit amet, facilisis erat. Donec vulputate sed ex vel pellentesque. In sodales odio non felis interdum viverra. Morbi in mi mollis, ullamcorper nibh sit amet, sagittis ex. Maecenas dapibus commodo venenatis. Donec at egestas est.</TextBlock>
                 </StackPanel>
                 <Border x:Name="ItemHeroElement" 
-                        Height="300" Width="300" 
-                        Background="Purple" 
+                        Height="300" Width="300"
+                        Background="{ThemeResource SystemControlForegroundAccentBrush}"
                         animations:Connected.Key="listItem"></Border>
             </StackPanel>
 

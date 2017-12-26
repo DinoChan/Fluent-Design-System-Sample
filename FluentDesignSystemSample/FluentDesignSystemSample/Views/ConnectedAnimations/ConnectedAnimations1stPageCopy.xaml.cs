@@ -20,16 +20,16 @@ namespace FluentDesignSystemSample.Views.ConnectedAnimations
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class ConnectedAnimations1stPage : Page
+    public sealed partial class ConnectedAnimations1stPageCopy : Page
     {
-        public ConnectedAnimations1stPage()
+        public ConnectedAnimations1stPageCopy()
         {
             this.InitializeComponent();
         }
 
         private void Border_Tapped(object sender, TappedRoutedEventArgs e)
         {
-          MainPage.Current.RootFrame.Navigate(typeof(ConnectedAnimations1stPageCopy));
+          MainPage.Current.RootFrame.Navigate(typeof(ConnectedAnimations2ndPage));
         }
     }
 }

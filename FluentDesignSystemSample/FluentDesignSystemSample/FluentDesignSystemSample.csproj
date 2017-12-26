@@ -95,6 +95,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\AcrylicFallbackColorConverter.cs" />
+    <Compile Include="Converters\AcrylicTintColorConverter.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -104,9 +106,6 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TitleBarHelper.cs" />
-    <Compile Include="Views\ConnectedAnimations\ConnectedAnimations1stPage.xaml.cs">
-      <DependentUpon>ConnectedAnimations1stPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\ConnectedAnimations\ConnectedAnimations2ndPage.xaml.cs">
       <DependentUpon>ConnectedAnimations2ndPage.xaml</DependentUpon>
     </Compile>
@@ -173,10 +172,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="NavigationRoot.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\ConnectedAnimations\ConnectedAnimations1stPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

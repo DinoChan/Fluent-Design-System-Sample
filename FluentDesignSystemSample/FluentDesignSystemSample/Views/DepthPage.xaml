@@ -7,7 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+          Margin="{StaticResource PageMargin}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -15,10 +16,10 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0"
                    Text="Depth"
-                   x:Name="TitlePage"
-                   FontWeight="Bold"
+                   x:Name="TitleElement"
+                   FontWeight="Light"
                    Style="{StaticResource PageTitleStyle}" />
-        <Pivot Grid.Row="1">
+        <Pivot Grid.Row="1" x:Name="ContentElement">
             <PivotItem Header="Parallax">
                 <Grid Height="500">
                     <ParallaxView x:Name="parallaxView" Source="{Binding ElementName=listView}"

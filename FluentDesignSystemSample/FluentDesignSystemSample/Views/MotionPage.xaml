@@ -1,28 +1,40 @@
-﻿<Page
-    x:Class="FluentDesignSystemSample.Views.MotionPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:FluentDesignSystemSample.Views"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:ConnectedAnimations="using:FluentDesignSystemSample.Views.ConnectedAnimations"
-    mc:Ignorable="d">
+﻿<Page x:Class="FluentDesignSystemSample.Views.MotionPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:FluentDesignSystemSample.Views"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
+      mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+          Margin="{StaticResource PageMargin}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
+          
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0"
                    Text="Motion"
-                   x:Name="TitlePage"
-                   FontWeight="Bold"
+                   x:Name="TitleElement"
+                   FontWeight="Light"
                    Style="{StaticResource PageTitleStyle}" />
-        <Pivot Grid.Row="1">
-            <PivotItem Header="Connected Animations">
-                <ConnectedAnimations:ConnectedAnimations1stPage/>
-            </PivotItem>
-        </Pivot>
+        <!--<Pivot Grid.Row="1">
+            <PivotItem Header="Connected Animations">-->
+        <Grid Grid.Row="1" x:Name="ContentElement">
+        <Border Height="100"
+                Width="100"
+                
+                Background="{ThemeResource SystemControlForegroundAccentBrush}"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                animations:Connected.Key="item"
+                Tapped="Border_Tapped" />
+        <TextBlock VerticalAlignment="Bottom"
+               
+                   HorizontalAlignment="Center">This is the first page, Click/Tap the box to navigate to the next page</TextBlock>
+        </Grid>
+        <!--</PivotItem>
+        </Pivot>-->
     </Grid>
 </Page>

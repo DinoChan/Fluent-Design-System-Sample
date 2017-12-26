@@ -5,28 +5,27 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:models="using:FluentDesignSystemSample.Models"
+      xmlns:converters="using:Microsoft.Toolkit.Uwp.UI.Converters"
+      xmlns:converters1="using:FluentDesignSystemSample.Converters"
       mc:Ignorable="d">
 
     <Page.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.ThemeDictionaries>
-                <ResourceDictionary x:Key="Default">
-                  
-
-                </ResourceDictionary>
-            </ResourceDictionary.ThemeDictionaries>
-            
+           
+          
+            <converters1:AcrylicFallbackColorConverter x:Key="AcrylicFallbackColorConverter" />
+            <converters1:AcrylicTintColorConverter x:Key="AcrylicTintColorConverter" />
             <AcrylicBrush x:Key="CustomAcrylicBackgroundBrush"
                           BackgroundSource="HostBackdrop"
                           TintOpacity="0.8"
-                          TintColor="Black"
-                          FallbackColor="Green" />
+                          TintColor="#FF1F1F1F"
+                        />
 
             <AcrylicBrush x:Key="CustomAcrylicInAppBrush"
                           BackgroundSource="Backdrop"
                           TintOpacity="0.8"
-                          TintColor="Black"
-                          FallbackColor="Green" />
+                          TintColor="#FF1F1F1F"
+                        />
             
             <ControlTemplate x:Key="BackgroundControlTemplete" TargetType="ContentControl">
                 <Grid Width="320"
@@ -87,7 +86,7 @@
                                    FontWeight="Bold" />
                         <TextBlock Margin="0,5">
                         <Run Text="TintColor:" />
-                        <Run Text="{Binding Brush.TintColor}"
+                        <Run Text="{Binding Brush,Converter={StaticResource AcrylicTintColorConverter}}"
                              FontStyle="Italic" />
                         </TextBlock>
                         <TextBlock Margin="0,5">
@@ -95,16 +94,13 @@
                         <Run Text="{Binding Brush.TintOpacity}"
                              FontStyle="Italic" />
                         </TextBlock>
-                        <TextBlock Margin="0,5">
-                        <Run Text="BackgroundSource:" />
-                        <Run Text="{Binding Brush.BackgroundSource}"
-                             FontStyle="Italic" />
-                        </TextBlock>
+                       
                         <TextBlock Margin="0,5">
                         <Run Text="FallbackColor:" />
-                        <Run Text="{Binding  Brush.FallbackColor}"
+                        <Run Text="{Binding  Brush,Converter={StaticResource AcrylicFallbackColorConverter}}"
                              FontStyle="Italic" />
                         </TextBlock>
+                     
                     </StackPanel>
 
                 </Grid>
@@ -115,7 +111,8 @@
                 <Setter Property="HeaderTemplate">
                     <Setter.Value>
                         <DataTemplate>
-                            <TextBlock Text="{Binding}" FontWeight="Bold" FontSize="{ThemeResource MediumFontSize}"/>
+                            <TextBlock Text="{Binding}"
+                                       Style="{ThemeResource SubtitleTextBlockStyle}" />
                         </DataTemplate>
                     </Setter.Value>
                 </Setter>
@@ -131,10 +128,10 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0"
                    Text="Material"
-                   x:Name="TitlePage"
+                   x:Name="TitleElement"
                    FontWeight="Light"
                    Style="{StaticResource PageTitleStyle}" />
-        <Pivot Grid.Row="1">
+        <Pivot Grid.Row="1" x:Name="ContentElement">
             <PivotItem Header="Background Acrylic">
                 <ScrollViewer>
                     <Grid>
@@ -301,22 +298,28 @@
             </PivotItem>
             <PivotItem Header="Custom Acrylic">
                 <ScrollViewer>
-                    <StackPanel>
-                        <Grid>
+                    <StackPanel HorizontalAlignment="Left">
+                        <TextBlock Text="Background Acrylic"
+                                   Style="{ThemeResource SubtitleTextBlockStyle}"
+                                   Margin="10,20,0,0" />
+                        <Grid Margin="10"
+                          BorderBrush="{ThemeResource SystemControlBackgroundChromeMediumBrush}"
+                                BorderThickness="1" >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <Grid>
+                            <Grid VerticalAlignment="Top"
+                                  Margin="20">
                                 <ContentControl Template="{StaticResource BackgroundControlTemplete}" />
                                 <Rectangle  Margin="12"
                                             Fill="{StaticResource CustomAcrylicBackgroundBrush}" />
                             </Grid>
                             <StackPanel Grid.Column="1"
-                                        Margin="20,0,0,0">
-                                <TextBlock Text="Background Acrylic"
-                                           FontWeight="Bold"
-                                           Margin="0,0,0,12" />
+                                        Margin="10"
+                                        Padding="10"
+                                        Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+                              
 
                                 <TextBlock Text="Tint Color" Margin="0,12,0,0"/>
                                 <ColorPicker ColorSpectrumShape="Ring"
@@ -331,42 +334,43 @@
                                         Value="{Binding Source={StaticResource CustomAcrylicBackgroundBrush},Path=TintOpacity,Mode=TwoWay}"
                                         Minimum="0"
                                         Maximum="1"
-                                        Width="200"
+                                        
                                         SmallChange="0.01"
                                         StepFrequency="0.01"
-                                        HorizontalAlignment="Left"
-                                        IsFocusEngagementEnabled="False" />
+                                     
+                                        IsFocusEngagementEnabled="False"
+                                        />
 
-                                <TextBlock Text="Fallback Color" Margin="0,12,0,0"/>
-                                <ColorPicker ColorSpectrumShape="Ring"
-                                             Color="{Binding Source={StaticResource CustomAcrylicBackgroundBrush},Path=FallbackColor,Mode=TwoWay}"
-                                             IsColorPreviewVisible="False"
-                                             IsColorChannelTextInputVisible="False"
-                                             IsHexInputVisible="False"/>
-
+                              
 
                             </StackPanel>
 
                         </Grid>
 
-                        <Grid Margin="0,30,0,0">
+                        <TextBlock Text="In-app Acrylic"
+                                   Style="{ThemeResource SubtitleTextBlockStyle}"
+                                   Margin="10,20,0,0" />
+                        <Grid Margin="10"
+                              BorderBrush="{ThemeResource SystemControlBackgroundChromeMediumBrush}"
+                              BorderThickness="1"
+                              >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <Grid>
+                            <Grid VerticalAlignment="Top" Margin="20">
                                 <ContentControl Template="{StaticResource BackgroundControlTemplete}" />
                                 <Rectangle  Margin="12"
                                             Fill="{StaticResource CustomAcrylicInAppBrush}" />
                             </Grid>
                             <StackPanel Grid.Column="1"
-                                        Margin="20,0,0,0">
-                                <TextBlock Text="Background Acrylic"
-                                           FontWeight="Bold"
-                                           Margin="0,0,0,12" />
+                                        Margin="10" Padding="10" 
+                                        Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+                               
 
                                 <TextBlock Text="Tint Color" Margin="0,12,0,0"/>
                                 <ColorPicker ColorSpectrumShape="Ring"
+                                             HorizontalAlignment="Left"
                                              Color="{Binding Source={StaticResource CustomAcrylicInAppBrush},Path=TintColor,Mode=TwoWay}"
                                              IsColorPreviewVisible="False"
                                              IsColorChannelTextInputVisible="False"
@@ -378,19 +382,14 @@
                                         Value="{Binding Source={StaticResource CustomAcrylicInAppBrush},Path=TintOpacity,Mode=TwoWay}"
                                         Minimum="0"
                                         Maximum="1"
-                                        Width="200"
+                                      
                                         SmallChange="0.01"
                                         StepFrequency="0.01"
-                                        HorizontalAlignment="Left"
+                                     
                                         IsFocusEngagementEnabled="False" />
 
-                                <TextBlock Text="Fallback Color" Margin="0,12,0,0"/>
-                                <ColorPicker ColorSpectrumShape="Ring"
-                                             Color="{Binding Source={StaticResource CustomAcrylicInAppBrush},Path=FallbackColor,Mode=TwoWay}"
-                                             IsColorPreviewVisible="False"
-                                             IsColorChannelTextInputVisible="False"
-                                             IsHexInputVisible="False"/>
-
+                            
+                              
 
                             </StackPanel>
 
