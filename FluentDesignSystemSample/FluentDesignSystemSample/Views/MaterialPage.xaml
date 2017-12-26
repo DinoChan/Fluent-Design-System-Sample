@@ -11,19 +11,23 @@
         <ResourceDictionary>
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary x:Key="Default">
-                    <AcrylicBrush x:Key="CustomAcrylicInAppBrush"
-                                  BackgroundSource="Backdrop"
-                                  TintOpacity="0.8"
-                                  TintColor="Black"
-                                  FallbackColor="Green" />
+                  
 
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
+            
             <AcrylicBrush x:Key="CustomAcrylicBackgroundBrush"
                           BackgroundSource="HostBackdrop"
                           TintOpacity="0.8"
                           TintColor="Black"
                           FallbackColor="Green" />
+
+            <AcrylicBrush x:Key="CustomAcrylicInAppBrush"
+                          BackgroundSource="Backdrop"
+                          TintOpacity="0.8"
+                          TintColor="Black"
+                          FallbackColor="Green" />
+            
             <ControlTemplate x:Key="BackgroundControlTemplete" TargetType="ContentControl">
                 <Grid Width="320"
                       Height="200">
@@ -105,6 +109,17 @@
 
                 </Grid>
             </DataTemplate>
+
+            <Style TargetType="ListView">
+                <Setter Property="Margin" Value="0,0,0,20"/>
+                <Setter Property="HeaderTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" FontWeight="Bold" FontSize="{ThemeResource MediumFontSize}"/>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </ResourceDictionary>
     </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
@@ -302,9 +317,17 @@
                                 <TextBlock Text="Background Acrylic"
                                            FontWeight="Bold"
                                            Margin="0,0,0,12" />
-                                <TextBlock Text="Tint Opacity :"
-                                           Margin="0,0,0,12" />
+
+                                <TextBlock Text="Tint Color" Margin="0,12,0,0"/>
+                                <ColorPicker ColorSpectrumShape="Ring"
+                                             Color="{Binding Source={StaticResource CustomAcrylicBackgroundBrush},Path=TintColor,Mode=TwoWay}"
+                                             IsColorPreviewVisible="False"
+                                             IsColorChannelTextInputVisible="False"
+                                             IsHexInputVisible="False"/>
+                                
                                 <Slider x:Name="OpacitySliderInApp"
+                                        Margin="0,12,0,0"
+                                        Header="Tint Opacity"
                                         Value="{Binding Source={StaticResource CustomAcrylicBackgroundBrush},Path=TintOpacity,Mode=TwoWay}"
                                         Minimum="0"
                                         Maximum="1"
@@ -313,26 +336,62 @@
                                         StepFrequency="0.01"
                                         HorizontalAlignment="Left"
                                         IsFocusEngagementEnabled="False" />
-                                <!--<TextBlock Text="Tint Color :" Margin="0,12"/>
-                                <Button x:Name="colorPickerButton"
-                                        Flyout="{StaticResource myColorPickerFlyout}">
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="Pick a color"/>
-                                        <Rectangle Width="30" Fill="{StaticResource }"/>
-                                    </StackPanel>
-                                </Button>-->
 
-                                <!--<ColorPicker Color="{Binding Source={StaticResource CustomAcrylicBackgroundBrush},Path=TintOpacity,Mode=TwoWay}"/>
-                                <ComboBox x:Name="ColorSelectorInApp" SelectionChanged="ColorSelector_SelectionChanged" ItemTemplate="{StaticResource ColorTemplate}">
-                                    <SolidColorBrush Color="Black"/>
-                                    <SolidColorBrush Color="Red"/>
-                                    <SolidColorBrush Color="Blue"/>
-                                </ComboBox>
-                                <TextBlock Text="Fallback Color :" Margin="0,12,0,12"/>
-                                <ComboBox x:Name="FallbackColorSelectorInApp" SelectionChanged="FallbackColorSelector_SelectionChanged" ItemTemplate="{StaticResource ColorTemplate}">
-                                    <SolidColorBrush Color="Green"/>
-                                    <SolidColorBrush Color="Yellow"/>
-                                </ComboBox>-->
+                                <TextBlock Text="Fallback Color" Margin="0,12,0,0"/>
+                                <ColorPicker ColorSpectrumShape="Ring"
+                                             Color="{Binding Source={StaticResource CustomAcrylicBackgroundBrush},Path=FallbackColor,Mode=TwoWay}"
+                                             IsColorPreviewVisible="False"
+                                             IsColorChannelTextInputVisible="False"
+                                             IsHexInputVisible="False"/>
+
+
+                            </StackPanel>
+
+                        </Grid>
+
+                        <Grid Margin="0,30,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid>
+                                <ContentControl Template="{StaticResource BackgroundControlTemplete}" />
+                                <Rectangle  Margin="12"
+                                            Fill="{StaticResource CustomAcrylicInAppBrush}" />
+                            </Grid>
+                            <StackPanel Grid.Column="1"
+                                        Margin="20,0,0,0">
+                                <TextBlock Text="Background Acrylic"
+                                           FontWeight="Bold"
+                                           Margin="0,0,0,12" />
+
+                                <TextBlock Text="Tint Color" Margin="0,12,0,0"/>
+                                <ColorPicker ColorSpectrumShape="Ring"
+                                             Color="{Binding Source={StaticResource CustomAcrylicInAppBrush},Path=TintColor,Mode=TwoWay}"
+                                             IsColorPreviewVisible="False"
+                                             IsColorChannelTextInputVisible="False"
+                                             IsHexInputVisible="False"/>
+
+                                <Slider 
+                                        Margin="0,12,0,0"
+                                        Header="Tint Opacity"
+                                        Value="{Binding Source={StaticResource CustomAcrylicInAppBrush},Path=TintOpacity,Mode=TwoWay}"
+                                        Minimum="0"
+                                        Maximum="1"
+                                        Width="200"
+                                        SmallChange="0.01"
+                                        StepFrequency="0.01"
+                                        HorizontalAlignment="Left"
+                                        IsFocusEngagementEnabled="False" />
+
+                                <TextBlock Text="Fallback Color" Margin="0,12,0,0"/>
+                                <ColorPicker ColorSpectrumShape="Ring"
+                                             Color="{Binding Source={StaticResource CustomAcrylicInAppBrush},Path=FallbackColor,Mode=TwoWay}"
+                                             IsColorPreviewVisible="False"
+                                             IsColorChannelTextInputVisible="False"
+                                             IsHexInputVisible="False"/>
+
+
                             </StackPanel>
 
                         </Grid>
