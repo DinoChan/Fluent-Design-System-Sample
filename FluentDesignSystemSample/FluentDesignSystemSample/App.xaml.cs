@@ -116,7 +116,7 @@ namespace FluentDesignSystemSample
                     builder.RegisterType<NavigationService>()
                         .AsImplementedInterfaces()
                         .SingleInstance();
-
+                    builder.RegisterInstance(mainPage).As<INavigationRoot>();
                     Container = builder.Build();
                     mainPage.InitializeNavigationService(Container.Resolve<INavigationService>());
                     adapter.NavigationFailed += OnNavigationFailed;

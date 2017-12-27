@@ -108,7 +108,10 @@ namespace FluentDesignSystemSample
                     NavigationView.SelectedItem = NavigationView.SettingsItem;
                     break;
             }
-
+            DispatcherHelper.ExecuteOnUIThreadAsync(() =>
+            {
+                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = RootFrame.CanGoBack ? AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
+            });
         }
 
 

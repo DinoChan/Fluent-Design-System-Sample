@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Xaml;
 using Autofac;
@@ -23,6 +24,11 @@ namespace FluentDesignSystemSample
             _coreTitleBar.LayoutMetricsChanged += CoreTitleBar_LayoutMetricsChanged;
             _titlePosition = CalculateTilebarOffset(_coreTitleBar.SystemOverlayLeftInset, _coreTitleBar.Height);
             _titleVisibility = Visibility.Visible;
+            using (var scope = App.Container.BeginLifetimeScope())
+            {
+                var navigationRoot = scope.Resolve<INavigationRoot>();
+                navigationRoot.IsPaneOpenChanged += OnNavigationRootIsPaneOpenChanged;
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -83,7 +89,11 @@ namespace FluentDesignSystemSample
             TitleVisibility = Visibility.Collapsed;
         }
 
-      
+        private void OnNavigationRootIsPaneOpenChanged(object sender, EventArgs e)
+        {
+            TitlePosition = CalculateTilebarOffset(_coreTitleBar.SystemOverlayLeftInset, _coreTitleBar.Height);
+        }
+
         private void CoreTitleBar_LayoutMetricsChanged(CoreApplicationViewTitleBar sender, object args)
         {
             TitlePosition = CalculateTilebarOffset(_coreTitleBar.SystemOverlayLeftInset, _coreTitleBar.Height);
