@@ -12,6 +12,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Autofac;
+using FluentDesignSystemSample.Services;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -56,7 +58,11 @@ namespace FluentDesignSystemSample.Views.ConnectedAnimations
 
         private void ListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            MainPage.Current.RootFrame.Navigate(typeof(ConnectedAnimations3rdPage), e.ClickedItem);
+            using (var scope = App.Container.BeginLifetimeScope())
+            {
+                var navigationService = scope.Resolve<INavigationService>();
+                navigationService.NavigateToPage<ConnectedAnimations3rdPage>(e.ClickedItem);
+            }
         }
     }
 

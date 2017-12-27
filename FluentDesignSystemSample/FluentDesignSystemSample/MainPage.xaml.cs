@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using FluentDesignSystemSample.Services;
 
 // https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x804 上介绍了“空白页”项模板
 
@@ -23,26 +24,32 @@ namespace FluentDesignSystemSample
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class MainPage : Page, INavigationRoot
     {
-        public static MainPage Current { get; private set; }
+        private INavigationService _navigationService;
+
 
         public MainPage()
         {
             this.InitializeComponent();
-            Current = this;
+
             NavigationView.RegisterPropertyChangedCallback(NavigationView.IsPaneOpenProperty, OnNavigationViewIsPaneOpenPropertyChanged);
             SystemNavigationManager.GetForCurrentView().BackRequested += OnAppBackRequested;
             WindowTitle.EnableLayoutImplicitAnimations(TimeSpan.FromMilliseconds(100));
             this.Loaded += OnLoaded;
         }
 
-        public TitleBarHelper TitleHelper
+        public TitleBarHelper TitleHelper => TitleBarHelper.Instance;
+
+        public event EventHandler IsPaneOpenChanged;
+
+        public bool IsPaneOpen => NavigationView.IsPaneOpen;
+
+        public double CompactPaneLength => NavigationView.CompactPaneLength;
+
+        public void InitializeNavigationService(INavigationService navigationService)
         {
-            get
-            {
-                return TitleBarHelper.Instance;
-            }
+            _navigationService = navigationService;
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)
@@ -52,29 +59,28 @@ namespace FluentDesignSystemSample
 
         private void NavigationView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
-            
             if (args.IsSettingsInvoked)
             {
-                RootFrame.Navigate(typeof(SettingsPage));
+                _navigationService.NavigateToSettingsAsync();
                 return;
             }
 
             switch (args.InvokedItem as string)
             {
                 case "Depth":
-                    RootFrame.Navigate(typeof(DepthPage));
+                    _navigationService.NavigateToDepthAsync();
                     break;
                 case "Light":
-                    RootFrame.Navigate(typeof(LightPage));
+                    _navigationService.NavigateToLightAsync();
                     break;
                 case "Material":
-                    RootFrame.Navigate(typeof(MaterialPage));
+                    _navigationService.NavigateToMaterialAsync();
                     break;
                 case "Motion":
-                    RootFrame.Navigate(typeof(MotionPage));
+                    _navigationService.NavigateToMotionAsync();
                     break;
                 case "Scale":
-                    RootFrame.Navigate(typeof(ScalePage));
+                    _navigationService.NavigateToScaleAsync();
                     break;
             }
         }
@@ -100,19 +106,15 @@ namespace FluentDesignSystemSample
                     break;
                 case Type c when e.SourcePageType == typeof(SettingsPage):
                     NavigationView.SelectedItem = NavigationView.SettingsItem;
-                    //((NavigationViewItem)NavigationView.SettingsItem).IsSelected = true;
                     break;
             }
-            DispatcherHelper.ExecuteOnUIThreadAsync(() =>
-            {
-                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = RootFrame.CanGoBack ? AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
-            });
+
         }
 
 
         private void OnNavigationViewIsPaneOpenPropertyChanged(DependencyObject sender, DependencyProperty dp)
         {
-            TitleBarHelper.Instance.UpdateTitlePosition();
+            IsPaneOpenChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void OnAppBackRequested(object sender, BackRequestedEventArgs e)
@@ -123,7 +125,6 @@ namespace FluentDesignSystemSample
                 RootFrame.GoBack();
             }
         }
-
 
 
     }

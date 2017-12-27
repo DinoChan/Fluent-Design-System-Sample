@@ -97,6 +97,7 @@
     </Compile>
     <Compile Include="Converters\AcrylicFallbackColorConverter.cs" />
     <Compile Include="Converters\AcrylicTintColorConverter.cs" />
+    <Compile Include="INavigationRoot.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -105,6 +106,11 @@
       <DependentUpon>NavigationRoot.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\FrameAdapter.cs" />
+    <Compile Include="Services\IFrameAdapter.cs" />
+    <Compile Include="Services\INavigationService.cs" />
+    <Compile Include="Services\NavigationAnimationHelpers.cs" />
+    <Compile Include="Services\NavigationService.cs" />
     <Compile Include="TitleBarHelper.cs" />
     <Compile Include="Views\ConnectedAnimations\ConnectedAnimations2ndPage.xaml.cs">
       <DependentUpon>ConnectedAnimations2ndPage.xaml</DependentUpon>
@@ -156,6 +162,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Autofac">
+      <Version>4.6.2</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.0.4</Version>
     </PackageReference>

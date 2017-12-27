@@ -14,6 +14,9 @@ using Windows.UI.Xaml.Hosting;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Autofac;
+using Autofac.Core;
+using FluentDesignSystemSample.Services;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -32,7 +35,11 @@ namespace FluentDesignSystemSample.Views
 
         private void Border_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            MainPage.Current.RootFrame.Navigate(typeof(ConnectedAnimations2ndPage));
+            using (var scope =App.Container.BeginLifetimeScope())
+            {
+                var navigationService = scope.Resolve<INavigationService>();
+                navigationService.NavigateToPage< ConnectedAnimations2ndPage>();
+            }
         }
 
         private void ConfigureAnimations()

@@ -1,6 +1,9 @@
 ﻿using System.ComponentModel;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Xaml;
+using Autofac;
+using FluentDesignSystemSample.Services;
+using FluentDesignSystemSample.Views.ConnectedAnimations;
 
 namespace FluentDesignSystemSample
 {
@@ -63,7 +66,6 @@ namespace FluentDesignSystemSample
             {
                 return _titleVisibility;
             }
-
             set
             {
                 _titleVisibility = value;
@@ -81,11 +83,7 @@ namespace FluentDesignSystemSample
             TitleVisibility = Visibility.Collapsed;
         }
 
-        public void UpdateTitlePosition()
-        {
-            TitlePosition = CalculateTilebarOffset(_coreTitleBar.SystemOverlayLeftInset, _coreTitleBar.Height);
-        }
-
+      
         private void CoreTitleBar_LayoutMetricsChanged(CoreApplicationViewTitleBar sender, object args)
         {
             TitlePosition = CalculateTilebarOffset(_coreTitleBar.SystemOverlayLeftInset, _coreTitleBar.Height);
@@ -93,13 +91,20 @@ namespace FluentDesignSystemSample
 
         private Thickness CalculateTilebarOffset(double leftPosition, double height)
         {
+            using (var scope = App.Container.BeginLifetimeScope())
+            {
+                var navigationRoot = scope.Resolve<INavigationRoot>();
+                
+          
+
             // top position should be 6 pixels for a 32 pixel high titlebar hence scale by actual height
             var correctHeight = height / 32 * 6;
             var left = leftPosition + 12;
-            if (MainPage.Current != null && MainPage.Current.NavigationView.IsPaneOpen == false && leftPosition == 0)
-                left += MainPage.Current.NavigationView.CompactPaneLength;
+            if ( navigationRoot.IsPaneOpen == false && leftPosition == 0)
+                left += navigationRoot.CompactPaneLength;
 
             return new Thickness(left, correctHeight, 0, 0);
+            }
         }
     }
 }

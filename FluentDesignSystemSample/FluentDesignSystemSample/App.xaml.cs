@@ -20,6 +20,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Autofac;
+using FluentDesignSystemSample.Services;
 
 namespace FluentDesignSystemSample
 {
@@ -29,6 +31,7 @@ namespace FluentDesignSystemSample
     sealed partial class App : Application
     {
         private const string SelectedAppThemeKey = "SelectedAppTheme";
+        public static IContainer Container { get; private set; }
 
         /// <summary>
         /// Gets or sets (with LocalSettings persistence) the RequestedTheme of the root element.
@@ -100,16 +103,34 @@ namespace FluentDesignSystemSample
                     // 当导航堆栈尚未还原时，导航到第一页，
                     // 并通过将所需信息作为导航参数传入来配置
                     // 参数
+
                     rootFrame.Navigate(typeof(MainPage), e.Arguments);
+
+                    var mainPage = rootFrame.Content as MainPage;
+                    var builder = new ContainerBuilder();
+                    FrameAdapter adapter = new FrameAdapter(mainPage.RootFrame);
+
+                    builder.RegisterInstance(adapter)
+                        .AsImplementedInterfaces();
+
+                    builder.RegisterType<NavigationService>()
+                        .AsImplementedInterfaces()
+                        .SingleInstance();
+
+                    Container = builder.Build();
+                    mainPage.InitializeNavigationService(Container.Resolve<INavigationService>());
+                    adapter.NavigationFailed += OnNavigationFailed;
+
+                    SetupTitlebar();
+
                 }
                 // 确保当前窗口处于活动状态
                 Window.Current.Activate();
             }
-            SetupTitlebar();
-           
+
         }
 
-      
+
         /// <summary>
         /// 导航到特定页失败时调用
         /// </summary>
