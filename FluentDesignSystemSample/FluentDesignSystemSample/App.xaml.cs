@@ -53,7 +53,7 @@ namespace FluentDesignSystemSample
                 {
                     rootElement.RequestedTheme = value;
                 }
-
+                SetupTitlebar();
                 ApplicationData.Current.LocalSettings.Values[SelectedAppThemeKey] = value.ToString();
             }
         }
