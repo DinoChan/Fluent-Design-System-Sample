@@ -53,7 +53,7 @@ namespace FluentDesignSystemSample
                 {
                     rootElement.RequestedTheme = value;
                 }
-
+                SetupTitlebar();
                 ApplicationData.Current.LocalSettings.Values[SelectedAppThemeKey] = value.ToString();
             }
         }
@@ -121,6 +121,7 @@ namespace FluentDesignSystemSample
                     mainPage.InitializeNavigationService(Container.Resolve<INavigationService>());
                     adapter.NavigationFailed += OnNavigationFailed;
 
+                    RootTheme = LoadThemeFromSettingsAsync();
                     SetupTitlebar();
 
                 }
@@ -190,6 +191,19 @@ namespace FluentDesignSystemSample
         {
             var frameworkElement = Window.Current.Content as FrameworkElement;
             return frameworkElement.ActualTheme;
+        }
+
+        private static ElementTheme LoadThemeFromSettingsAsync()
+        {
+            ElementTheme cacheTheme = ElementTheme.Default;
+            if (ApplicationData.Current.LocalSettings.Values.ContainsKey(SelectedAppThemeKey))
+            {
+                string themeName = ApplicationData.Current.LocalSettings.Values[SelectedAppThemeKey] as string;
+                if (string.IsNullOrWhiteSpace(themeName) == false)
+                    Enum.TryParse(themeName, out cacheTheme);
+            }
+
+            return cacheTheme;
         }
     }
 }

@@ -1,11 +1,10 @@
-﻿<Page
-    x:Class="FluentDesignSystemSample.Views.DepthPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:FluentDesignSystemSample.Views"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+﻿<Page x:Class="FluentDesignSystemSample.Views.DepthPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:FluentDesignSystemSample.Views"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
           Margin="{StaticResource PageMargin}">
@@ -19,16 +18,24 @@
                    x:Name="TitleElement"
                    FontWeight="Light"
                    Style="{StaticResource PageTitleStyle}" />
-        <Pivot Grid.Row="1" x:Name="ContentElement">
+        <Pivot Grid.Row="1"
+               x:Name="ContentElement">
             <PivotItem Header="Parallax">
-                <Grid Height="500">
-                    <ParallaxView x:Name="parallaxView" Source="{Binding ElementName=listView}"
-                                  VerticalAlignment="Top" HorizontalAlignment="Left" VerticalShift="50">
+                <Grid Height="500"
+                      Width="400"
+                      VerticalAlignment="Top"
+                      HorizontalAlignment="Left">
+                    <ParallaxView x:Name="parallaxView"
+                                  Source="{Binding ElementName=listView}"
+                                  VerticalAlignment="Top"
+                                  HorizontalAlignment="Left"
+                                  VerticalShift="50">
                         <Image Source="ms-appx:///Assets/cliff.jpg" />
                     </ParallaxView>
-                    <ListView x:Name="listView" 
-                              HorizontalAlignment="Stretch" VerticalAlignment="Top"
-                              Background="#80000000" >
+                    <ListView x:Name="listView"
+                              HorizontalAlignment="Stretch"
+                              VerticalAlignment="Top"
+                              Background="#80000000">
                         <x:String>Item 1</x:String>
                         <x:String>Item 2</x:String>
                         <x:String>Item 3</x:String>
@@ -51,13 +58,18 @@
                         <x:String>Item 21</x:String>
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding}" Foreground="White" />
+                                <TextBlock Text="{Binding}"
+                                           Foreground="White" />
                             </DataTemplate>
                         </ListView.ItemTemplate>
                         <ListView.Header>
-                            <TextBlock Text="Scroll the list to see parallaxing of images" MaxWidth="280"
-                                       HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"
-                                       FontSize="28" TextWrapping="WrapWholeWords" />
+                            <TextBlock Text="Scroll the list to see parallaxing of images"
+                                       MaxWidth="280"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Foreground="White"
+                                       FontSize="28"
+                                       TextWrapping="WrapWholeWords" />
                         </ListView.Header>
                     </ListView>
                 </Grid>
