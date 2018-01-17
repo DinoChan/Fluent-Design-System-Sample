@@ -38,7 +38,7 @@ namespace FluentDesignSystemSample.Views
             using (var scope =App.Container.BeginLifetimeScope())
             {
                 var navigationService = scope.Resolve<INavigationService>();
-                navigationService.NavigateToPage< ConnectedAnimations2ndPage>();
+                navigationService.NavigateToPage<ConnectedAnimations2ndPage>();
             }
         }
 

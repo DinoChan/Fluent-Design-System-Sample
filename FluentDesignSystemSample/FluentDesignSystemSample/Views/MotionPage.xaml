@@ -24,7 +24,6 @@
         <Grid Grid.Row="1" x:Name="ContentElement">
         <Border Height="100"
                 Width="100"
-                
                 Background="{ThemeResource SystemControlForegroundAccentBrush}"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
