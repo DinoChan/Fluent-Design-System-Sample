@@ -52,5 +52,10 @@ namespace FluentDesignSystemSample.Views
 
             ElementCompositionPreview.SetImplicitHideAnimation(ContentElement, VisualHelpers.CreateVerticalOffsetAnimationTo(0.4, 50));
         }
+
+        private void OnSave(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

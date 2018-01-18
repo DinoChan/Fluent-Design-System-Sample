@@ -397,6 +397,14 @@
                     </StackPanel>
                 </ScrollViewer>
             </PivotItem>
+            <PivotItem Header="Modal">
+                <Grid Height="600"
+                      Width="800">
+                <Image Source="ms-appx:///Assets/IMG_20180115_182131.jpg" />
+                    <Button Style="{StaticResource ButtonRevealStyle}" Content="Save To..." HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                            Background="Transparent" Margin="20" FontSize="30" Click="OnSave"/>
+                </Grid>
+            </PivotItem>
         </Pivot>
 
     </Grid>
