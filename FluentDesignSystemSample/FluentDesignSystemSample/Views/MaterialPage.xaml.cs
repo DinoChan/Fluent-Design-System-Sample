@@ -55,7 +55,16 @@ namespace FluentDesignSystemSample.Views
 
         private void OnSave(object sender, RoutedEventArgs e)
         {
+            ModalLayer.Visibility = Visibility.Visible;
+            ImageScale.ScaleX = 1;
+            ImageScale.ScaleY = 1;
+        }
 
+        private void OnSaved(object sender, RoutedEventArgs e)
+        {
+            ModalLayer.Visibility = Visibility.Collapsed;
+            ImageScale.ScaleX = 1.1;
+            ImageScale.ScaleY = 1.1;
         }
     }
 }
