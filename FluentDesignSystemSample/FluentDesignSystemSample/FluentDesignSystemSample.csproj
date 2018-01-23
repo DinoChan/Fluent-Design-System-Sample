@@ -95,6 +95,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ColorSelector.cs" />
     <Compile Include="Converters\AcrylicFallbackColorConverter.cs" />
     <Compile Include="Converters\AcrylicTintColorConverter.cs" />
     <Compile Include="INavigationRoot.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="NavigationRoot.xaml.cs">
       <DependentUpon>NavigationRoot.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Picker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\FrameAdapter.cs" />
     <Compile Include="Services\IFrameAdapter.cs" />
@@ -167,7 +169,7 @@
       <Version>4.6.2</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.0.4</Version>
+      <Version>6.0.6</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI">
       <Version>2.1.1</Version>
@@ -184,6 +186,10 @@
     <Page Include="NavigationRoot.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\ConnectedAnimations\ConnectedAnimations2ndPage.xaml">
       <SubType>Designer</SubType>

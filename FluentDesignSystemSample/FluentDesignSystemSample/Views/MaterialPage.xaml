@@ -9,6 +9,7 @@
       xmlns:Custom="using:Microsoft.Xaml.Interactivity"
       xmlns:Custom1="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors"
       xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
+      xmlns:fluentdesignsystemsample="using:FluentDesignSystemSample"
       x:Class="FluentDesignSystemSample.Views.MaterialPage"
       mc:Ignorable="d">
 
@@ -16,17 +17,20 @@
         <ResourceDictionary>
             <AcrylicBrush x:Name="ModalAcrylicInAppBrush"
                           BackgroundSource="Backdrop"
-                          TintOpacity="0.1" TintTransitionDuration="0"
+                          TintOpacity="0.1"
+                          TintTransitionDuration="0"
                           TintColor="#FF1F1F1F" />
 
             <converters1:AcrylicFallbackColorConverter x:Key="AcrylicFallbackColorConverter" />
             <converters1:AcrylicTintColorConverter x:Key="AcrylicTintColorConverter" />
             <AcrylicBrush x:Key="CustomAcrylicBackgroundBrush"
+                          x:Name="CustomAcrylicBackgroundBrush"
                           BackgroundSource="HostBackdrop"
                           TintOpacity="0.8"
                           TintColor="#FF1F1F1F" />
 
             <AcrylicBrush x:Key="CustomAcrylicInAppBrush"
+                          x:Name="CustomAcrylicInAppBrush"
                           BackgroundSource="Backdrop"
                           TintOpacity="0.8"
                           TintColor="#FF1F1F1F" />
@@ -317,14 +321,11 @@
                                         Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
 
 
-                                <TextBlock Text="Tint Color"
-                                           Margin="0,12,0,0" />
-                                <ColorPicker ColorSpectrumShape="Ring"
-                                             Color="{Binding TintColor, Mode=TwoWay, Source={StaticResource CustomAcrylicBackgroundBrush}}"
-                                             IsColorPreviewVisible="False"
-                                             IsColorChannelTextInputVisible="False"
-                                             IsHexInputVisible="False" />
 
+                                <fluentdesignsystemsample:ColorSelector x:Name="BackgroundBrushColorSelector"
+                                                                        ColorChanged="OnBackgroundBrushColorSelectorColorChanged"
+                                                                        Header="Tint Color"
+                                                                        Width="200" />
                                 <Slider x:Name="OpacitySliderInApp"
                                         Margin="0,12,0,0"
                                         Header="Tint Opacity"
@@ -362,16 +363,10 @@
                                         Padding="10"
                                         Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
 
-
-                                <TextBlock Text="Tint Color"
-                                           Margin="0,12,0,0" />
-                                <ColorPicker ColorSpectrumShape="Ring"
-                                             HorizontalAlignment="Left"
-                                             Color="{Binding TintColor, Mode=TwoWay, Source={StaticResource CustomAcrylicInAppBrush}}"
-                                             IsColorPreviewVisible="False"
-                                             IsColorChannelTextInputVisible="False"
-                                             IsHexInputVisible="False" />
-
+                                <fluentdesignsystemsample:ColorSelector x:Name="InAppBrushColorSelector"
+                                                                        ColorChanged="OnInAppBrushColorSelectorColorChanged"
+                                                                        Header="Tint Color"
+                                                                        Width="200" />
                                 <Slider Margin="0,12,0,0"
                                         Header="Tint Opacity"
                                         Value="{Binding TintOpacity, Mode=TwoWay, Source={StaticResource CustomAcrylicInAppBrush}}"
@@ -393,7 +388,6 @@
             <PivotItem Header="Modal">
                 <Grid Height="600"
                       Width="800">
-
                     <ScrollViewer HorizontalScrollBarVisibility="Hidden"
                                   VerticalScrollBarVisibility="Hidden"
                                   HorizontalAlignment="Center"
@@ -425,7 +419,7 @@
                           Visibility="Collapsed"
                           x:Name="ModalLayer">
                         <animations:Implicit.ShowAnimations>
-                           
+
                             <animations:OpacityAnimation Duration="0:0:1"
                                                          From="0"
                                                          To="1.0"></animations:OpacityAnimation>
@@ -435,7 +429,7 @@
                             <animations:ScalarAnimation Target="Opacity"
                                                         Duration="0:0:1"
                                                         To="0.0"></animations:ScalarAnimation>
-                         
+
                         </animations:Implicit.HideAnimations>
                         <Button Style="{StaticResource ButtonRevealStyle}"
                                 Content="Save"

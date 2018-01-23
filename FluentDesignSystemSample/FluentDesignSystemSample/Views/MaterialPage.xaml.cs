@@ -27,7 +27,8 @@ namespace FluentDesignSystemSample.Views
         {
             this.InitializeComponent();
             ConfigureAnimations();
-
+            InAppBrushColorSelector.Color = CustomAcrylicInAppBrush.TintColor;
+            BackgroundBrushColorSelector.Color = CustomAcrylicBackgroundBrush.TintColor;
 
         }
 
@@ -65,6 +66,18 @@ namespace FluentDesignSystemSample.Views
             ModalLayer.Visibility = Visibility.Collapsed;
             ImageScale.ScaleX = 1.1;
             ImageScale.ScaleY = 1.1;
+        }
+
+        private void OnInAppBrushColorSelectorColorChanged(object sender, EventArgs e)
+        {
+            if (CustomAcrylicInAppBrush != null)
+                CustomAcrylicInAppBrush.TintColor = InAppBrushColorSelector.Color;
+        }
+
+        private void OnBackgroundBrushColorSelectorColorChanged(object sender, EventArgs e)
+        {
+            if (CustomAcrylicBackgroundBrush != null)
+                CustomAcrylicBackgroundBrush.TintColor = BackgroundBrushColorSelector.Color;
         }
     }
 }
