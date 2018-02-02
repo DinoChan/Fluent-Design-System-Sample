@@ -316,7 +316,7 @@
                                             Fill="{StaticResource CustomAcrylicBackgroundBrush}" />
                             </Grid>
                             <StackPanel Grid.Column="1"
-                                        Margin="10"
+                                        Margin="30,10,10,10"
                                         Padding="10"
                                         Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
 
@@ -359,7 +359,7 @@
                                             Fill="{StaticResource CustomAcrylicInAppBrush}" />
                             </Grid>
                             <StackPanel Grid.Column="1"
-                                        Margin="10"
+                                        Margin="30,10,10,10"
                                         Padding="10"
                                         Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
 

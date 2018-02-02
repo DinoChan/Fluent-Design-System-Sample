@@ -34,104 +34,159 @@
                                 <VisualState x:Name="PopupClosed" />
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
+                        <local:HeaderedContentControl Header="{TemplateBinding Header}"
+                                                      HeaderTemplate="{TemplateBinding HeaderTemplate}">
+                            <ToggleButton x:Name="DateButton"
+                                          DataContext="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=Color}"
+                                          IsEnabled="{TemplateBinding IsEnabled}"
+                                          IsChecked="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=IsDropDownOpen,Mode=TwoWay}"
+                                          HorizontalAlignment="Stretch"
+                                          HorizontalContentAlignment="Stretch">
+                                <ToggleButton.Content>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="Select A Color:" />
+                                        <Rectangle Grid.Column="1"
+                                                   Margin="5,0,0,0">
+                                            <Rectangle.Fill>
+                                                <SolidColorBrush Color="{Binding}" />
+                                            </Rectangle.Fill>
+                                        </Rectangle>
+                                    </Grid>
+                                </ToggleButton.Content>
+                                <FlyoutBase.AttachedFlyout>
+                                    <Flyout Placement="Bottom"
+                                            x:Name="Flyout">
+                                        <Flyout.FlyoutPresenterStyle>
+                                            <Style TargetType="FlyoutPresenter">
+                                                <Setter Property="Padding"
+                                                        Value="0" />
+                                                <Setter Property="BorderThickness"
+                                                        Value="0" />
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="FlyoutPresenter">
+                                                            <ContentPresenter Background="{TemplateBinding Background}"
+                                                                              BorderBrush="{TemplateBinding BorderBrush}"
+                                                                              BorderThickness="{TemplateBinding BorderThickness}"
+                                                                              Content="{TemplateBinding Content}"
+                                                                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                                              ContentTransitions="{TemplateBinding ContentTransitions}"
+                                                                              Margin="{TemplateBinding Padding}"
+                                                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </Flyout.FlyoutPresenterStyle>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <ColorPicker x:Name="ColorPicker"
+                                                         Style="{TemplateBinding ColorPickerStyle}"
+                                                         IsColorPreviewVisible="False"
+                                                         IsColorChannelTextInputVisible="False"
+                                                         IsHexInputVisible="False" />
+                                            <Grid Grid.Row="1"
+                                                  Height="45"
+                                                  x:Name="AcceptDismissHostGrid">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Rectangle Height="2"
+                                                           VerticalAlignment="Top"
+                                                           Fill="{ThemeResource DatePickerFlyoutPresenterSpacerFill}"
+                                                           Grid.ColumnSpan="2" />
+                                                <Button x:Name="AcceptButton"
+                                                        Grid.Column="0"
+                                                        Content="&#xE8FB;"
+                                                        FontFamily="{ThemeResource SymbolThemeFontFamily}"
+                                                        FontSize="16"
+                                                        HorizontalAlignment="Stretch"
+                                                        VerticalAlignment="Stretch"
+                                                        Style="{StaticResource DateTimePickerFlyoutButtonStyle}"
+                                                        Margin="0,2,0,0" />
+                                                <Button x:Name="DismissButton"
+                                                        Grid.Column="1"
+                                                        Content="&#xE711;"
+                                                        FontFamily="{ThemeResource SymbolThemeFontFamily}"
+                                                        FontSize="16"
+                                                        HorizontalAlignment="Stretch"
+                                                        VerticalAlignment="Stretch"
+                                                        Style="{StaticResource DateTimePickerFlyoutButtonStyle}"
+                                                        Margin="0,2,0,0" />
+                                            </Grid>
+                                        </Grid>
+                                    </Flyout>
+                                </FlyoutBase.AttachedFlyout>
+                            </ToggleButton>
+                        </local:HeaderedContentControl>
+
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style TargetType="local:HeaderedContentControl">
+        <Setter Property="FontFamily"
+                Value="{ThemeResource ContentControlThemeFontFamily}" />
+        <Setter Property="FontSize"
+                Value="{ThemeResource ControlContentThemeFontSize}" />
+        <Setter Property="Foreground"
+                Value="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+        <Setter Property="HorizontalContentAlignment"
+                Value="Stretch" />
+        <Setter Property="VerticalContentAlignment"
+                Value="Stretch" />
+        <Setter Property="IsTabStop"
+                Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:HeaderedContentControl">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HeaderContentPresenter"
+                                                                       Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="{ThemeResource SystemControlDisabledBaseMediumLowBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Normal" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
                         <ContentPresenter x:Name="HeaderContentPresenter"
                                           x:DeferLoadStrategy="Lazy"
-                                          Content="{TemplateBinding Header}"
-                                          ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                          Visibility="Collapsed"
                                           Margin="0,0,0,8"
                                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
-                                          AutomationProperties.AccessibilityView="Raw" />
-                        <ToggleButton x:Name="DateButton"
-                                      DataContext="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=Color}"
-                                      IsEnabled="{TemplateBinding IsEnabled}"
-                                      IsChecked="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=IsDropDownOpen,Mode=TwoWay}"
-                                      HorizontalAlignment="Stretch"
-                                      HorizontalContentAlignment="Stretch">
-                            <ToggleButton.Content>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition />
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Text="Select A Color:" />
-                                    <Rectangle Grid.Column="1" Margin="5,0,0,0" >
-                                        <Rectangle.Fill>
-                                            <SolidColorBrush Color="{Binding}" />
-                                        </Rectangle.Fill>
-                                    </Rectangle>
-                                </Grid>
-                            </ToggleButton.Content>
-                            <FlyoutBase.AttachedFlyout>
-                                <Flyout Placement="Bottom"
-                                        x:Name="Flyout">
-                                    <Flyout.FlyoutPresenterStyle>
-                                        <Style TargetType="FlyoutPresenter">
-                                            <Setter Property="Padding"
-                                                    Value="0" />
-                                            <Setter Property="BorderThickness"
-                                                    Value="0" />
-                                            <Setter Property="Template">
-                                                <Setter.Value>
-                                                    <ControlTemplate TargetType="FlyoutPresenter">
-                                                        <ContentPresenter Background="{TemplateBinding Background}"
-                                                                          BorderBrush="{TemplateBinding BorderBrush}"
-                                                                          BorderThickness="{TemplateBinding BorderThickness}"
-                                                                          Content="{TemplateBinding Content}"
-                                                                          ContentTemplate="{TemplateBinding ContentTemplate}"
-                                                                          ContentTransitions="{TemplateBinding ContentTransitions}"
-                                                                          Margin="{TemplateBinding Padding}"
-                                                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-                                                    </ControlTemplate>
-                                                </Setter.Value>
-                                            </Setter>
-                                        </Style>
-                                    </Flyout.FlyoutPresenterStyle>
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition />
-                                            <RowDefinition Height="Auto" />
-                                        </Grid.RowDefinitions>
-                                        <ColorPicker x:Name="ColorPicker"
-                                                     Style="{TemplateBinding ColorPickerStyle}"
-                                                     IsColorPreviewVisible="False"
-                                                     IsColorChannelTextInputVisible="False"
-                                                     IsHexInputVisible="False" />
-                                        <Grid Grid.Row="1"
-                                              Height="45"
-                                              x:Name="AcceptDismissHostGrid">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*" />
-                                                <ColumnDefinition Width="*" />
-                                            </Grid.ColumnDefinitions>
-                                            <Rectangle Height="2"
-                                                       VerticalAlignment="Top"
-                                                       Fill="{ThemeResource DatePickerFlyoutPresenterSpacerFill}"
-                                                       Grid.ColumnSpan="2" />
-                                            <Button x:Name="AcceptButton"
-                                                    Grid.Column="0"
-                                                    Content="&#xE8FB;"
-                                                    FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                                                    FontSize="16"
-                                                    HorizontalAlignment="Stretch"
-                                                    VerticalAlignment="Stretch"
-                                                    Style="{StaticResource DateTimePickerFlyoutButtonStyle}"
-                                                    Margin="0,2,0,0" />
-                                            <Button x:Name="DismissButton"
-                                                    Grid.Column="1"
-                                                    Content="&#xE711;"
-                                                    FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                                                    FontSize="16"
-                                                    HorizontalAlignment="Stretch"
-                                                    VerticalAlignment="Stretch"
-                                                    Style="{StaticResource DateTimePickerFlyoutButtonStyle}"
-                                                    Margin="0,2,0,0" />
-                                        </Grid>
-                                    </Grid>
-                                </Flyout>
-                            </FlyoutBase.AttachedFlyout>
-                        </ToggleButton>
-                    </StackPanel>
+                                          Content="{TemplateBinding Header}"
+                                          ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                          FontWeight="Normal" />
+                        <ContentPresenter Grid.Row="1"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          Margin="{TemplateBinding Padding}"
+                                          ContentTransitions="{TemplateBinding ContentTransitions}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

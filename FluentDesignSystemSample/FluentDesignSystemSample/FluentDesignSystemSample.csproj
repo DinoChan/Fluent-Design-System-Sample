@@ -98,6 +98,7 @@
     <Compile Include="ColorSelector.cs" />
     <Compile Include="Converters\AcrylicFallbackColorConverter.cs" />
     <Compile Include="Converters\AcrylicTintColorConverter.cs" />
+    <Compile Include="HeaderedContentControl.cs" />
     <Compile Include="INavigationRoot.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
