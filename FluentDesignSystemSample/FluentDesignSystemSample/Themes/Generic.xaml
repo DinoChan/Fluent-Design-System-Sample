@@ -128,7 +128,6 @@
                                 </FlyoutBase.AttachedFlyout>
                             </ToggleButton>
                         </local:HeaderedContentControl>
-
                     </StackPanel>
                 </ControlTemplate>
             </Setter.Value>
